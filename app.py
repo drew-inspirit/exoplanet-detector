@@ -299,11 +299,11 @@ with tab1:
         )
 
     r = st.session_state.scan_result
-    st.plotly_chart(r["feed"], use_container_width=True)
+    st.plotly_chart(r["feed"], use_container_width=True, key="scan_feed")
 
     col_gauge, col_result = st.columns([1, 2])
     with col_gauge:
-        st.plotly_chart(r["gauge"], use_container_width=True)
+        st.plotly_chart(r["gauge"], use_container_width=True, key="scan_gauge")
     with col_result:
         verdict  = "## 🟢 TRANSIT SIGNAL DETECTED" if r["planet"] else "## 🔴 NO TRANSIT SIGNAL"
         true_str = "CONFIRMED EXOPLANET" if r["label"] == 1 else "NON-PLANETARY STAR"
@@ -360,12 +360,12 @@ with tab2:
         )
 
     pr = st.session_state.period_result
-    st.plotly_chart(pr["fig1"], use_container_width=True)
-    st.plotly_chart(pr["fig2"], use_container_width=True)
+    st.plotly_chart(pr["fig1"], use_container_width=True, key="period_fig1")
+    st.plotly_chart(pr["fig2"], use_container_width=True, key="period_fig2")
 
     col_pgauge, col_presult = st.columns([1, 2])
     with col_pgauge:
-        st.plotly_chart(pr["gauge"], use_container_width=True)
+        st.plotly_chart(pr["gauge"], use_container_width=True, key="period_gauge")
     with col_presult:
         verdict  = "## 🟢 TRANSIT DETECTED IN WINDOW" if pr["prob"] > 0.5 else "## 🔴 NO TRANSIT IN WINDOW"
         true_str = "CONFIRMED EXOPLANET" if pr["label"] == 1 else "NON-PLANETARY STAR"
